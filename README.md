@@ -105,8 +105,8 @@ exit                                            # back to previous directory
 | `~/.hushlogin` | Suppress login message | — | system-installed |
 | `~/.gnupg/common.conf` | GnuPG common config | — | `gnupg` (brew) |
 | `~/.gnupg/gpg-agent.conf` | GPG agent config (pinentry) | — | `gnupg` `pinentry-mac` (brew) |
-| `~/.gnupg/public-key.asc` | GPG public key (armored export) | — | `gnupg` (brew) |
-| `~/.gnupg/secret-key.asc` | GPG secret key | age | `gnupg` (brew) |
+| `~/.gnupg/public-key-*.asc` | GPG public keys (armored export) | — | `gnupg` (brew) |
+| `~/.gnupg/secret-key-*.asc` | GPG secret keys | age | `gnupg` (brew) |
 | `~/.gnupg/trustdb.gpg` | GPG trust database | — | `gnupg` (brew) |
 | `~/.config/karabiner/karabiner.json` | Karabiner-Elements key remapping | — | [Karabiner-Elements](https://karabiner-elements.pqrs.org/) (cask) |
 | `~/.wakatime.cfg` | WakaTime config | template | [WakaTime](https://wakatime.com/) plugin installed |
