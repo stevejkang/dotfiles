@@ -21,5 +21,7 @@
 	date = iso
 [alias]
 	re = rebase --committer-date-is-author-date
+[gpg]
+	program = gpg
 [credential]
 	helper = osxkeychain
