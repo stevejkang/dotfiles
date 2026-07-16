@@ -18,6 +18,23 @@ When adding a new dotfile to this repo, **all three steps are required**:
 2. Update the **"What's managed"** table in `README.md` with the file path and description.
 3. Stage, confirm with user, then commit and push.
 
+## Scripts
+
+- Scripts in `.chezmoiscripts/` run during `chezmoi apply`.
+- All scripts **must be idempotent** — safe to run repeatedly with the same result.
+- Choose the appropriate `run_` prefix based on timing and frequency needs (`once`, `onchange`, `before`, `after`).
+- For `run_onchange_` scripts, include template hashes to trigger re-runs when dependent files change (see existing GPG import script).
+
+## Pre-commit checklist
+
+Before staging and committing, verify:
+
+1. `chezmoi apply --dry-run` produces no unexpected changes.
+2. `chezmoi apply` completes without errors.
+3. Scripts execute idempotently (run twice, same result, exit 0).
+4. No plaintext secrets in staged files (check `git diff --cached`).
+5. README "What's managed" table reflects any added/removed/renamed files.
+
 ## Modifying existing files
 
 - **Do not alter the user's existing config content** unless explicitly asked.
