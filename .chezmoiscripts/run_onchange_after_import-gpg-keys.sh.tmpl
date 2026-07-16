@@ -1,0 +1,20 @@
+#!/bin/bash
+# key files hash (triggers re-run on change):
+{{ range glob (joinPath .chezmoi.sourceDir "private_dot_gnupg/*.asc*") -}}
+# {{ . | base }}: {{ include . | sha256sum }}
+{{ end -}}
+set -euo pipefail
+
+GNUPG_DIR="$HOME/.gnupg"
+
+for f in "$GNUPG_DIR"/secret-key-*.asc; do
+  [ -f "$f" ] || continue
+  gpg --batch --import "$f" 2>/dev/null && echo "Imported: $(basename "$f")"
+done
+
+for f in "$GNUPG_DIR"/public-key-*.asc; do
+  [ -f "$f" ] || continue
+  gpg --batch --import "$f" 2>/dev/null && echo "Imported: $(basename "$f")"
+done
+
+echo "GPG key import complete"
