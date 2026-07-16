@@ -1,7 +1,7 @@
 [user]
 	email = iam@juneyoung.io
 	name = stevejkang
-	signingkey = 85D2EA75C4BC40E8
+	signingkey = FE3B6BCB75676E0B5514104D85D2EA75C4BC40E8
 [core]
 	editor = vim
 	ignorecase = false
