@@ -23,5 +23,7 @@
 	re = rebase --committer-date-is-author-date
 [gpg]
 	program = gpg
+[includeIf "gitdir:~/src/github.com/wanteddev/"]
+	path = ~/.gitconfig-wanteddev
 [credential]
 	helper = osxkeychain
