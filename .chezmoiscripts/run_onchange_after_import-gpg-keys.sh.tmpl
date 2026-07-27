@@ -5,6 +5,8 @@
 {{ end -}}
 set -euo pipefail
 
+echo "Applying GPG key..."
+
 GNUPG_DIR="$HOME/.gnupg"
 
 for f in "$GNUPG_DIR"/secret-key-*.asc; do
