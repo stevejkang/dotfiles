@@ -110,3 +110,10 @@ exit                                            # back to previous directory
 | `~/.gnupg/trustdb.gpg` | GPG trust database | — | `gnupg` (brew) |
 | `~/.config/karabiner/karabiner.json` | Karabiner-Elements key remapping | — | [Karabiner-Elements](https://karabiner-elements.pqrs.org/) (cask) |
 | `~/.wakatime.cfg` | WakaTime config | template | [WakaTime](https://wakatime.com/) plugin installed |
+
+## Scripts
+
+| Script | Trigger | Description |
+|---|---|---|
+| `run_onchange_before_macos-defaults.sh` | content change | macOS system preferences (Dock, Finder, Keyboard, Lock Screen, etc.) |
+| `run_onchange_after_import-gpg-keys.sh.tmpl` | GPG key file change | Import GPG public/secret keys |
