@@ -115,7 +115,7 @@ exit                                            # back to previous directory
 | `~/.ssh/id_ed25519` | SSH private key | age | `ssh` (system-installed) |
 | `~/.ssh/id_ed25519.pub` | SSH public key | — | `ssh` (system-installed) |
 | `~/.zshrc` | Zsh config | — | — |
-| `~/.zshrc.secrets` | Zsh secrets | age | — |
+| `~/.zshrc.secrets` | Zsh secrets | template | — |
 | `~/.p10k.zsh` | Powerlevel10k config | — | — |
 | `~/.oh-my-zsh` | Oh My Zsh (external) | — | `git` |
 | `~/.oh-my-zsh/custom/themes/powerlevel10k` | Powerlevel10k theme (external) | — | `git` |
