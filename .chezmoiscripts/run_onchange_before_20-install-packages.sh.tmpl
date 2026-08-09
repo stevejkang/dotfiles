@@ -7,7 +7,7 @@ echo "Installing Homebrew packages..."
 
 eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.taps -}}
 tap {{ . | quote }}
 {{ end -}}
