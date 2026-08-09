@@ -1,0 +1,75 @@
+packages:
+  taps:
+    - "hashicorp/tap"
+    - "johngrib/johngrib"
+    - "stevejkang/tap"
+    - "terraform-linters/tap"
+  brews:
+    - act
+    - age
+    - awscli
+    - bash
+    - binwalk
+    - chezmoi
+    - esphome
+    - exiftool
+    - fav        # johngrib/johngrib
+    - fnm
+    - fzf
+    - gh
+    - git
+    - gnupg
+    - hey
+    - lsd
+    - mysql-client@8.0
+    - neovim
+    - nmap
+    - pinentry-mac
+    - pyenv
+    - tmux
+    - tokfresh   # stevejkang/tap
+    - uv
+    - wget
+    - wireshark
+    - zlib
+    - zoxide
+  casks:
+    - 1password
+    - 1password-cli
+    - alt-tab
+    - appcleaner
+    - claude
+    - cursor
+    - figma
+    - firefox@developer-edition
+    - font-jetbrains-mono-nerd-font
+    - fork
+    - google-chrome
+    - intellij-idea
+    - iterm2
+    - karabiner-elements
+    - keybase
+    - kiro-cli
+    - logi-options+
+    - macs-fan-control
+    - mitmproxy
+    - ngrok
+    - notchnook
+    - notion
+    - obsidian
+    - ollama
+    - orbstack
+    - orca
+    - postman
+    - proxyman
+    - raindropio
+    - raycast
+    - shortcat
+    - signal
+    - slack
+    - spotify
+    - tableplus
+    - tailscale
+    - telegram-desktop
+    - tflint     # terraform-linters/tap
+    - zoom
