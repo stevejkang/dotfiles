@@ -5,7 +5,13 @@ Managed by [chezmoi](https://www.chezmoi.io/).
 ## Setup (new machine)
 
 ```bash
-# Install chezmoi and apply dotfiles
+# 1. Install 1Password and CLI, then sign in
+# 2. Fetch age decryption key
+mkdir -p ~/.config/chezmoi
+op document get "age key" --vault Chezmoi > ~/.config/chezmoi/key.txt
+chmod 600 ~/.config/chezmoi/key.txt
+
+# 3. Install chezmoi and apply dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply stevejkang/dotfiles-chezmoi
 ```
 
