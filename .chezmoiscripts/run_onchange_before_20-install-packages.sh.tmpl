@@ -12,7 +12,7 @@ eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shell
 brew trust --tap {{ . | quote }} 2>/dev/null || true
 {{ end -}}
 
-brew bundle --file=/dev/stdin <<EOF
+if ! brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.taps -}}
 tap {{ . | quote }}
 {{ end -}}
@@ -23,6 +23,9 @@ brew {{ . | quote }}
 cask {{ . | quote }}
 {{ end -}}
 EOF
+then
+  echo "Warning: brew bundle finished with errors (some packages may have failed to install)"
+fi
 
 echo "Homebrew packages installed"
 {{ end -}}
