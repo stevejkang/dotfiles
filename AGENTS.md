@@ -55,7 +55,8 @@ Before staging and committing, verify:
 | Condition | Method | Example |
 |---|---|---|
 | File has a mix of plain config and secret values | **Template** (`onepasswordRead`) | `.wakatime.cfg` — only `api_key` is secret |
-| Entire file is sensitive | **Age encryption** (`chezmoi add --encrypt`) | SSH private keys, credential bundles |
+| Shell/config file with secret values as variables | **Template** (`onepasswordRead`) | `.zshrc.secrets` — export with API key |
+| Entire file is a binary key or credential bundle | **Age encryption** (`chezmoi add --encrypt`) | SSH private keys, GPG secret keys |
 
 ### Detecting secrets
 
