@@ -131,5 +131,6 @@ exit                                            # back to previous directory
 |---|---|---|
 | `run_once_before_00-install-homebrew.sh.tmpl` | once | Install Homebrew if not present |
 | `run_onchange_before_10-macos-defaults.sh` | content change | macOS system preferences (Dock, Finder, Keyboard, Lock Screen, etc.) |
+| `run_onchange_before_20-install-packages.sh.tmpl` | packages.yaml change | Install Homebrew taps, formulae, and casks |
 | `run_onchange_after_10-import-gpg-keys.sh.tmpl` | GPG key file change | Import GPG public/secret keys |
 | `run_onchange_after_20-ssh-add.sh.tmpl` | SSH key file change | Add SSH key to Apple Keychain |

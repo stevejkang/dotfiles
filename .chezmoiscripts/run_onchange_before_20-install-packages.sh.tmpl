@@ -1,0 +1,23 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# packages hash: {{ include (joinPath .chezmoi.sourceDir ".chezmoidata/packages.yaml") | sha256sum }}
+set -euo pipefail
+
+echo "Installing Homebrew packages..."
+
+eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.taps -}}
+tap {{ . | quote }}
+{{ end -}}
+{{ range .packages.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+
+echo "Homebrew packages installed"
+{{ end -}}
