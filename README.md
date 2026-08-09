@@ -110,6 +110,11 @@ exit                                            # back to previous directory
 | `~/.ssh/id_ed25519.pub` | SSH public key | — | `ssh` (system-installed) |
 | `~/.zshrc` | Zsh config | — | — |
 | `~/.zshrc.secrets` | Zsh secrets | age | — |
+| `~/.p10k.zsh` | Powerlevel10k config | — | — |
+| `~/.oh-my-zsh` | Oh My Zsh (external) | — | `git` |
+| `~/.oh-my-zsh/custom/themes/powerlevel10k` | Powerlevel10k theme (external) | — | `git` |
+| `~/.oh-my-zsh/custom/plugins/zsh-autosuggestions` | zsh-autosuggestions (external) | — | `git` |
+| `~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting` | zsh-syntax-highlighting (external) | — | `git` |
 | `~/.zprofile` | Zsh profile | — | — |
 | `~/.hushlogin` | Suppress login message | — | system-installed |
 | `~/.gnupg/common.conf` | GnuPG common config | — | `gnupg` (brew) |
