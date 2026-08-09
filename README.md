@@ -108,6 +108,8 @@ exit                                            # back to previous directory
 | `~/.ssh/config` | SSH client config | — | `ssh` (system-installed) |
 | `~/.ssh/id_ed25519` | SSH private key | age | `ssh` (system-installed) |
 | `~/.ssh/id_ed25519.pub` | SSH public key | — | `ssh` (system-installed) |
+| `~/.zshrc` | Zsh config | — | — |
+| `~/.zshrc.secrets` | Zsh secrets | age | — |
 | `~/.zprofile` | Zsh profile | — | — |
 | `~/.hushlogin` | Suppress login message | — | system-installed |
 | `~/.gnupg/common.conf` | GnuPG common config | — | `gnupg` (brew) |
