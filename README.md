@@ -5,13 +5,16 @@ Managed by [chezmoi](https://www.chezmoi.io/).
 ## Setup (new machine)
 
 ```bash
-# 1. Install 1Password and CLI, then sign in
-# 2. Fetch age decryption key
+# 1. Install Xcode Command Line Tools (required for git)
+xcode-select --install
+
+# 2. Install 1Password and CLI, then sign in
+# 3. Fetch age decryption key
 mkdir -p ~/.config/chezmoi
 op document get "age key" --vault Chezmoi > ~/.config/chezmoi/key.txt
 chmod 600 ~/.config/chezmoi/key.txt
 
-# 3. Install chezmoi and apply dotfiles
+# 4. Install chezmoi and apply dotfiles
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply stevejkang/dotfiles-chezmoi
 ```
 
