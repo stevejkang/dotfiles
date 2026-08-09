@@ -105,7 +105,10 @@ exit                                            # back to previous directory
 
 | File | Description | Encryption | Prerequisite |
 |---|---|---|---|
-| `~/.config/tmux/tmux.conf.local` | tmux config (oh-my-tmux + powerkit) | — | `tmux` `bash` ≥5.0 (brew), [gpakosz/.tmux](https://github.com/gpakosz/.tmux) (git clone), Nerd Font (cask) |
+| `~/.config/tmux/tmux.conf` | tmux config symlink (→ oh-my-tmux) | — | `tmux` `bash` ≥5.0 (brew) |
+| `~/.config/tmux/tmux.conf.local` | tmux local config (powerkit) | — | `tmux` `bash` ≥5.0 (brew) |
+| `~/.local/share/tmux/oh-my-tmux` | oh-my-tmux (external) | — | `git` |
+| `~/.config/tmux/plugins/tpm` | tpm (external, clone-once) | — | `git` |
 | `~/.gitignore-global` | Global gitignore | — | `git` (system-installed) |
 | `~/.gitconfig` | Git configuration (GPG signing enabled) | — | `git` (system-installed), `gnupg` (brew) |
 | `~/.ssh/config` | SSH client config | — | `ssh` (system-installed) |
