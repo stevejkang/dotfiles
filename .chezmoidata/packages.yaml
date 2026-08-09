@@ -57,7 +57,7 @@ packages:
     - notchnook
     - notion
     - obsidian
-    - ollama
+    - ollama-app
     - orbstack
     - orca
     - postman
@@ -69,7 +69,7 @@ packages:
     - slack
     - spotify
     - tableplus
-    - tailscale
+    - tailscale-app
     - telegram-desktop
     - tflint     # terraform-linters/tap
     - zoom
