@@ -7,6 +7,11 @@ echo "Installing Homebrew packages..."
 
 eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
 
+# Trust third-party taps before bundle install
+{{ range .packages.taps -}}
+brew trust --tap {{ . | quote }} 2>/dev/null || true
+{{ end -}}
+
 brew bundle --file=/dev/stdin <<EOF
 {{ range .packages.taps -}}
 tap {{ . | quote }}
