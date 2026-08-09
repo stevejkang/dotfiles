@@ -1,0 +1,58 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
+
+# opencode (version-pinned)
+if ! command -v opencode &> /dev/null; then
+  echo "Installing opencode..."
+  curl -fsSL https://opencode.ai/install | bash -s -- -v 1.17.13 --no-modify-path
+fi
+
+# Node.js (via fnm, required for corepack/pnpm)
+if ! command -v node &> /dev/null; then
+  echo "Installing Node.js via fnm..."
+  eval "$(fnm env --shell bash)"
+  fnm install --lts
+  fnm default lts-latest
+  fnm use lts-latest
+  eval "$(fnm env --shell bash)"
+fi
+
+# pnpm (via corepack)
+if ! command -v pnpm &> /dev/null; then
+  echo "Installing pnpm via corepack..."
+  eval "$(fnm env --shell bash)"
+  fnm use lts-latest
+  corepack enable
+  corepack prepare pnpm@latest --activate
+fi
+
+# yarn (via corepack)
+if ! command -v yarn &> /dev/null; then
+  echo "Installing yarn via corepack..."
+  eval "$(fnm env --shell bash)"
+  fnm use lts-latest
+  corepack enable
+  corepack prepare yarn@stable --activate
+fi
+
+# bun
+if ! command -v bun &> /dev/null; then
+  echo "Installing bun..."
+  curl -fsSL https://bun.sh/install | bash
+fi
+
+# go
+if ! command -v go &> /dev/null; then
+  echo "Installing go..."
+  GO_VERSION=$(curl -fsSL https://go.dev/VERSION?m=text | head -1)
+  curl -fsSL "https://go.dev/dl/${GO_VERSION}.darwin-arm64.tar.gz" -o /tmp/go.tar.gz
+  sudo rm -rf /usr/local/go
+  sudo tar -C /usr/local -xzf /tmp/go.tar.gz
+  rm -f /tmp/go.tar.gz
+fi
+
+echo "Non-brew tools installed"
+{{ end -}}
