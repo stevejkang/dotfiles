@@ -1,0 +1,15 @@
+#!/bin/bash
+# key file hash (triggers re-run on change):
+# {{ include (joinPath .chezmoi.sourceDir "private_dot_ssh/encrypted_private_id_ed25519.age") | sha256sum }}
+set -euo pipefail
+
+echo "Adding SSH key to Apple Keychain..."
+
+SSH_KEY="$HOME/.ssh/id_ed25519"
+
+if [ ! -f "$SSH_KEY" ]; then
+  echo "SSH key not found: $SSH_KEY"
+  exit 1
+fi
+
+ssh-add --apple-use-keychain "$SSH_KEY" 2>/dev/null && echo "SSH key added to Keychain"

@@ -117,3 +117,4 @@ exit                                            # back to previous directory
 |---|---|---|
 | `run_onchange_before_macos-defaults.sh` | content change | macOS system preferences (Dock, Finder, Keyboard, Lock Screen, etc.) |
 | `run_onchange_after_import-gpg-keys.sh.tmpl` | GPG key file change | Import GPG public/secret keys |
+| `run_onchange_after_ssh-add.sh.tmpl` | SSH key file change | Add SSH key to Apple Keychain |
