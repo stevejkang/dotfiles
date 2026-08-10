@@ -9,6 +9,7 @@ Rules for AI agents working on this repository.
 - **No emoji** in commit messages.
 - **Never commit without explicit user confirmation.** Always show staged changes and ask before committing.
 - **Never push without explicit user confirmation.** Always show local commits and ask before pushing.
+- **Write from the perspective of the final merged state on main.** Commit messages and code comments must be meaningful after the merge. Do not reference intermediate decisions, session-local context (e.g. numbering like T1/T2), or changes that are not inferable from the committed result.
 
 ## Adding a managed file
 
