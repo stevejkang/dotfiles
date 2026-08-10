@@ -124,8 +124,8 @@ source $ZSH/oh-my-zsh.sh
 # Git GPG Signed Commit
 export GPG_TTY=$(tty)
 
-export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
 # alias - frequently use
 alias vzshrc="vim ~/.zshrc"
 alias szshrc="source ~/.zshrc"
