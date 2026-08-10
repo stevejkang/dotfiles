@@ -146,7 +146,7 @@ alias vimdiff="nvim -d"
 export EDITOR=/opt/homebrew/bin/nvim
 
 # fav-dir
-source /opt/homebrew/bin/fav.sh
+[[ -f /opt/homebrew/bin/fav.sh ]] && source /opt/homebrew/bin/fav.sh
 
 # fnm (Fast Node Manager)
 eval "$(fnm env --use-on-cd --shell zsh)"
