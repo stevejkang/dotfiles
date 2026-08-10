@@ -25,7 +25,6 @@ packages:
     - neovim
     - nmap
     - pinentry-mac
-    - pyenv
     - tmux
     - tokfresh   # stevejkang/tap
     - uv
