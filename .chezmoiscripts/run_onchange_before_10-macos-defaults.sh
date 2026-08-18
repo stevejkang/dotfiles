@@ -41,15 +41,15 @@ defaults write com.apple.HIToolbox AppleFnUsageType -int 0
 HOTKEYS="$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
 FINDER_PLIST="$HOME/Library/Preferences/com.apple.finder.plist"
 
-# Disable "Select next input source" (symbolic hotkey 61)
-plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:61:enabled" "bool" "false"
+# Disable "Select previous input source" (symbolic hotkey 60)
+plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:60:enabled" "bool" "false"
 
-# "Select previous input source" → Option+Space (symbolic hotkey 60)
+# "Select next input source" → Option+Space (symbolic hotkey 61)
 # 32=space ascii, 49=space keycode, 524288=Option modifier bitmask
-plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:60:enabled" "bool" "true"
-plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:60:value:parameters:0" "integer" "32"
-plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:60:value:parameters:1" "integer" "49"
-plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:60:value:parameters:2" "integer" "524288"
+plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:61:enabled" "bool" "true"
+plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:61:value:parameters:0" "integer" "32"
+plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:61:value:parameters:1" "integer" "49"
+plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:61:value:parameters:2" "integer" "524288"
 
 # Disable Spotlight shortcuts (64=Show Spotlight, 65=Finder Search)
 plist_set "$HOTKEYS" ":AppleSymbolicHotKeys:64:enabled" "bool" "false"
