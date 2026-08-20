@@ -12,10 +12,15 @@ if [ ! -f "$SSH_KEY" ]; then
   exit 1
 fi
 
-if [ -e /dev/tty ]; then
-  exec < /dev/tty
-  ssh-add --apple-use-keychain "$SSH_KEY" && echo "SSH key added to Keychain"
-else
+if [ -n "${SSH_CONNECTION:-}" ]; then
+  echo "Skipping ssh-add: running over SSH. Run manually: ssh-add --apple-use-keychain $SSH_KEY"
+  exit 0
+fi
+
+if [ ! -e /dev/tty ]; then
   echo "Skipping ssh-add: no TTY available. Run manually: ssh-add --apple-use-keychain $SSH_KEY"
   exit 0
 fi
+
+exec < /dev/tty
+ssh-add --apple-use-keychain "$SSH_KEY" && echo "SSH key added to Keychain"
