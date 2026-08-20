@@ -27,3 +27,5 @@
 	path = ~/.gitconfig-wanteddev
 [credential]
 	helper = osxkeychain
+[branch]
+	sort = -committerdate
