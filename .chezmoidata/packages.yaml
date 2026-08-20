@@ -3,6 +3,7 @@ packages:
     - "hashicorp/tap"
     - "johngrib/johngrib"
     - "stevejkang/tap"
+    - "stablyai/orca"
     - "terraform-linters/tap"
   brews:
     - act
@@ -58,7 +59,7 @@ packages:
     - obsidian
     - ollama-app
     - orbstack
-    - orca
+    - stablyai/orca/orca  # stablyai/orca
     - postman
     - proxyman
     - raindropio
