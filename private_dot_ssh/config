@@ -6,4 +6,6 @@ Include ~/.orbstack/ssh/config
 # Keep this block at the bottom of ssh_config
 # https://superuser.com/a/1158050
 Host *
+	AddKeysToAgent yes
 	UseKeychain yes
+	IdentityFile ~/.ssh/id_ed25519
