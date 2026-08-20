@@ -39,3 +39,5 @@
 	suffix = -alpha
 	suffix = -beta
 	suffix = -rc
+[help]
+	autocorrect = prompt
