@@ -15,6 +15,7 @@
 	gpgsign = true
 [push]
 	autoSetupRemote = true
+	followTags = true
 [pull]
 	ff = only
 [log]
