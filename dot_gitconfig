@@ -32,3 +32,5 @@
 	sort = -committerdate
 [fetch]
 	prune = true
+[rerere]
+	enabled = true
