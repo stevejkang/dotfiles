@@ -1,4 +1,4 @@
-# dotfiles-chezmoi
+# dotfiles
 
 Managed by [chezmoi](https://www.chezmoi.io/).
 
@@ -15,7 +15,7 @@ op document get "age key" --vault Chezmoi > ~/.config/chezmoi/key.txt
 chmod 600 ~/.config/chezmoi/key.txt
 
 # 4. Install chezmoi and apply dotfiles
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply stevejkang/dotfiles-chezmoi
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply stevejkang/dotfiles
 ```
 
 ## Daily usage
