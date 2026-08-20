@@ -13,6 +13,7 @@
 	gpgsign = true
 [tag]
 	gpgsign = true
+	sort = version:refname
 [push]
 	autoSetupRemote = true
 	followTags = true
@@ -34,3 +35,7 @@
 	prune = true
 [rerere]
 	enabled = true
+[versionsort]
+	suffix = -alpha
+	suffix = -beta
+	suffix = -rc
