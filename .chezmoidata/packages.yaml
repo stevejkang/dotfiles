@@ -49,7 +49,6 @@ packages:
     - iterm2
     - karabiner-elements
     - keybase
-    - kiro-cli
     - logi-options+
     - macs-fan-control
     - mitmproxy
