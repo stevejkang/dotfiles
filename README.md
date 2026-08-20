@@ -27,6 +27,9 @@ chezmoi add ~/.config/tmux/tmux.conf.local
 # Edit a managed file (opens in $EDITOR, auto-applies on save)
 chezmoi edit ~/.config/tmux/tmux.conf.local
 
+# Sync target file changes back to source (e.g. after editing the file directly)
+chezmoi re-add ~/.config/tmux/tmux.conf.local
+
 # Preview changes before applying
 chezmoi diff
 
