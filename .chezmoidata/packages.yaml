@@ -1,6 +1,7 @@
 packages:
   taps:
     - "hashicorp/tap"
+    - "infisical/get-cli"
     - "johngrib/johngrib"
     - "stevejkang/tap"
     - "stablyai/orca"
@@ -21,6 +22,7 @@ packages:
     - git
     - gnupg
     - hey
+    - infisical   # infisical/get-cli
     - lsd
     - mysql-client@8.0
     - neovim
