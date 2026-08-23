@@ -117,6 +117,8 @@ exit                                            # back to previous directory
 | `~/.ssh/config` | SSH client config | — | `ssh` (system-installed) |
 | `~/.ssh/id_ed25519` | SSH private key | age | `ssh` (system-installed) |
 | `~/.ssh/id_ed25519.pub` | SSH public key | — | `ssh` (system-installed) |
+| `~/.ssh/sysadmin` | SSH private key (sysadmin) | age | `ssh` (system-installed) |
+| `~/.ssh/sysadmin.pub` | SSH public key (sysadmin) | — | `ssh` (system-installed) |
 | `~/.zshenv` | Zsh environment variables | — | — |
 | `~/.zshrc` | Zsh config | — | — |
 | `~/.zshrc.secrets` | Zsh secrets | template | — |
