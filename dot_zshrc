@@ -36,10 +36,12 @@ alias czshrc="cat ~/.zshrc"
 # alias - copy absolute path
 alias cpwd="pwd | pbcopy"
 
-# alias - file (replace ohmyzsh default alias to lsd)
-alias ls="lsd --no-symlink"
-alias ll="lsd -l --no-symlink"
-alias lt="lsd --tree --no-symlink"
+# alias - file (lsd)
+alias ls="lsd"
+alias ll="lsd -l"
+alias la="lsd -a"
+alias lla="lsd -la"
+alias lt="lsd --tree"
 
 # alias - use nvim instead of vi or vim
 alias vim="nvim"
