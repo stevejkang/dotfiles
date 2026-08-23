@@ -47,7 +47,7 @@ alias lt="lsd --tree"
 alias vim="nvim"
 alias vi="nvim"
 alias vimdiff="nvim -d"
-export EDITOR=/opt/homebrew/bin/nvim
+export EDITOR="nvim"
 
 # fav-dir
 [[ -f /opt/homebrew/bin/fav.sh ]] && source /opt/homebrew/bin/fav.sh
