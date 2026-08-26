@@ -5,6 +5,9 @@ set -euo pipefail
 PAM_SUDO="/etc/pam.d/sudo"
 PAM_SUDO_LOCAL="/etc/pam.d/sudo_local"
 PAM_TID_LINE="auth       sufficient     pam_tid.so"
+BREW_PREFIX="$(brew --prefix 2>/dev/null || echo /opt/homebrew)"
+PAM_REATTACH_SO="${BREW_PREFIX}/lib/pam/pam_reattach.so"
+PAM_REATTACH_LINE="auth       optional       ${PAM_REATTACH_SO}"
 
 supports_touchid() {
   if command -v bioutil &>/dev/null; then
@@ -19,6 +22,13 @@ is_touchid_configured() {
     grep -q "pam_tid.so" "$PAM_SUDO_LOCAL" 2>/dev/null && return 0
   fi
   [[ -f "$PAM_SUDO" ]] && grep -q "pam_tid.so" "$PAM_SUDO" 2>/dev/null
+}
+
+is_reattach_configured() {
+  if [[ -f "$PAM_SUDO_LOCAL" ]]; then
+    grep -q "pam_reattach.so" "$PAM_SUDO_LOCAL" 2>/dev/null && return 0
+  fi
+  [[ -f "$PAM_SUDO" ]] && grep -q "pam_reattach.so" "$PAM_SUDO" 2>/dev/null
 }
 
 if ! supports_touchid; then
@@ -53,5 +63,27 @@ else
   sudo install -m 444 -o root -g wheel "$TEMP" "$PAM_SUDO"
   rm -f "$TEMP"
   echo "Touch ID enabled via /etc/pam.d/sudo."
+fi
+
+# pam_reattach: allow Touch ID to work inside tmux sessions
+# Must appear before pam_tid.so; marked "optional" so missing .so is harmless
+if [[ -f "$PAM_REATTACH_SO" ]] && ! is_reattach_configured; then
+  echo "Enabling pam_reattach for tmux Touch ID support..."
+  TARGET="${PAM_SUDO_LOCAL}"
+  if [[ ! -f "$TARGET" ]]; then
+    TARGET="${PAM_SUDO}"
+  fi
+  TEMP=$(mktemp)
+  awk -v reattach="$PAM_REATTACH_LINE" '
+    !inserted && /pam_tid\.so/ { print reattach; inserted=1 }
+    { print }
+  ' "$TARGET" > "$TEMP"
+  sudo install -m 444 -o root -g wheel "$TEMP" "$TARGET"
+  rm -f "$TEMP"
+  echo "pam_reattach enabled."
+elif [[ ! -f "$PAM_REATTACH_SO" ]]; then
+  echo "pam_reattach not installed, skipping tmux support. Run: brew install pam-reattach"
+elif is_reattach_configured; then
+  echo "pam_reattach is already configured."
 fi
 {{ end -}}

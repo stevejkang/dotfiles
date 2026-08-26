@@ -30,6 +30,7 @@ packages:
     - mysql-client@8.0
     - neovim
     - nmap
+    - pam-reattach
     - pinentry-mac
     - terraform  # hashicorp/tap
     - tmux
