@@ -145,6 +145,6 @@ exit                                            # back to previous directory
 | `run_onchange_before_10-macos-defaults.sh` | content change | macOS system preferences (Dock, Finder, Keyboard, Lock Screen, etc.) |
 | `run_onchange_before_20-install-packages.sh.tmpl` | packages.yaml change | Install Homebrew taps, formulae, and casks |
 | `run_once_after_01-install-tools.sh.tmpl` | once | Install non-brew tools |
-| `run_once_after_02-enable-touchid-sudo.sh.tmpl` | once | Enable Touch ID for sudo (Sonoma+ sudo_local, pre-Sonoma fallback) |
+| `run_onchange_after_02-enable-touchid-sudo.sh.tmpl` | content change | Enable Touch ID for sudo (Sonoma+ sudo_local, pre-Sonoma fallback) |
 | `run_onchange_after_10-import-gpg-keys.sh.tmpl` | GPG key file change | Import GPG public/secret keys |
 | `run_onchange_after_20-ssh-add.sh.tmpl` | SSH key file change | Add SSH key to Apple Keychain |

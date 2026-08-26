@@ -54,5 +54,14 @@ if ! command -v go &> /dev/null; then
   rm -f /tmp/go.tar.gz
 fi
 
+# pam-watchid (Apple Watch sudo authentication)
+if [[ ! -f /usr/local/lib/pam/pam_watchid.so.2 ]]; then
+  echo "Installing pam-watchid..."
+  TEMP_DIR=$(mktemp -d)
+  git clone --depth 1 https://github.com/mostpinkest/pam-watchid.git "$TEMP_DIR"
+  (cd "$TEMP_DIR" && sudo make install)
+  sudo rm -rf "$TEMP_DIR"
+fi
+
 echo "Non-brew tools installed"
 {{ end -}}
