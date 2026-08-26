@@ -1,0 +1,57 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+PAM_SUDO="/etc/pam.d/sudo"
+PAM_SUDO_LOCAL="/etc/pam.d/sudo_local"
+PAM_TID_LINE="auth       sufficient     pam_tid.so"
+
+supports_touchid() {
+  if command -v bioutil &>/dev/null; then
+    bioutil -r 2>/dev/null | grep -q "Touch ID" && return 0
+  fi
+  [[ "$(uname -m)" == "arm64" ]] && return 0
+  return 1
+}
+
+is_touchid_configured() {
+  if [[ -f "$PAM_SUDO_LOCAL" ]]; then
+    grep -q "pam_tid.so" "$PAM_SUDO_LOCAL" 2>/dev/null && return 0
+  fi
+  [[ -f "$PAM_SUDO" ]] && grep -q "pam_tid.so" "$PAM_SUDO" 2>/dev/null
+}
+
+if ! supports_touchid; then
+  echo "Touch ID not supported on this Mac, skipping."
+  exit 0
+fi
+
+if is_touchid_configured; then
+  echo "Touch ID for sudo is already enabled."
+  exit 0
+fi
+
+echo "Enabling Touch ID for sudo..."
+
+# Sonoma+ uses sudo_local (sudo includes it via "auth include sudo_local")
+if grep -q "sudo_local" "$PAM_SUDO" 2>/dev/null; then
+  if [[ ! -f "$PAM_SUDO_LOCAL" ]]; then
+    printf "# sudo_local: local config for sudo\n%s\n" "$PAM_TID_LINE" | sudo tee "$PAM_SUDO_LOCAL" >/dev/null
+  else
+    echo "$PAM_TID_LINE" | sudo tee -a "$PAM_SUDO_LOCAL" >/dev/null
+  fi
+  sudo chmod 444 "$PAM_SUDO_LOCAL"
+  sudo chown root:wheel "$PAM_SUDO_LOCAL"
+  echo "Touch ID enabled via sudo_local."
+else
+  # Pre-Sonoma: insert pam_tid.so as the first auth line in /etc/pam.d/sudo
+  TEMP=$(mktemp)
+  awk -v line="$PAM_TID_LINE" '
+    !inserted && /^auth/ { print line; inserted=1 }
+    { print }
+  ' "$PAM_SUDO" > "$TEMP"
+  sudo install -m 444 -o root -g wheel "$TEMP" "$PAM_SUDO"
+  rm -f "$TEMP"
+  echo "Touch ID enabled via /etc/pam.d/sudo."
+fi
+{{ end -}}
