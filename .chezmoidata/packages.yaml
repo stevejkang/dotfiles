@@ -12,6 +12,7 @@ packages:
     - awscli
     - bash
     - binwalk
+    - btop
     - chezmoi
     - esphome
     - exiftool
@@ -24,15 +25,19 @@ packages:
     - hey
     - infisical   # infisical/get-cli
     - lsd
+    - media-control
+    - mole
     - mysql-client@8.0
     - neovim
     - nmap
     - pinentry-mac
+    - terraform  # hashicorp/tap
     - tmux
     - tokfresh   # stevejkang/tap
     - uv
     - wget
     - wireshark
+    - witr
     - zlib
     - zoxide
   casks:
