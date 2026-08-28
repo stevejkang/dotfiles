@@ -136,6 +136,7 @@ exit                                            # back to previous directory
 | `~/.gnupg/trustdb.gpg` | GPG trust database | — | `gnupg` (brew) |
 | `~/.config/karabiner/karabiner.json` | Karabiner-Elements key remapping | — | [Karabiner-Elements](https://karabiner-elements.pqrs.org/) (cask) |
 | `~/.wakatime.cfg` | WakaTime config | template | [WakaTime](https://wakatime.com/) plugin installed |
+| `~/.config/iterm2/com.googlecode.iterm2.plist` | iTerm2 preferences | — | [iTerm2](https://iterm2.com/) (cask) |
 
 ## Scripts
 
@@ -148,3 +149,4 @@ exit                                            # back to previous directory
 | `run_onchange_after_02-enable-touchid-sudo.sh.tmpl` | content change | Enable Touch ID for sudo (Sonoma+ sudo_local, pre-Sonoma fallback) |
 | `run_onchange_after_10-import-gpg-keys.sh.tmpl` | GPG key file change | Import GPG public/secret keys |
 | `run_onchange_after_20-ssh-add.sh.tmpl` | SSH key file change | Add SSH key to Apple Keychain |
+| `run_once_after_30-configure-iterm2.sh` | once | Point iTerm2 to custom preferences folder |
