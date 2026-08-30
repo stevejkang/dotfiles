@@ -10,7 +10,7 @@ if ! command -v opencode &> /dev/null; then
   curl -fsSL https://opencode.ai/install | bash -s -- -v 1.17.13 --no-modify-path
 fi
 
-# Node.js (via fnm, required for corepack/pnpm)
+# Node.js (via fnm)
 if ! command -v node &> /dev/null; then
   echo "Installing Node.js via fnm..."
   eval "$(fnm env --shell bash)"
@@ -20,21 +20,12 @@ if ! command -v node &> /dev/null; then
   eval "$(fnm env --shell bash)"
 fi
 
-# pnpm (via corepack)
-if ! command -v pnpm &> /dev/null; then
-  echo "Installing pnpm via corepack..."
-  eval "$(fnm env --shell bash)"
-  fnm use lts-latest
-  corepack enable
-  corepack prepare pnpm@latest --activate
-fi
-
 # yarn (via corepack)
 if ! command -v yarn &> /dev/null; then
   echo "Installing yarn via corepack..."
   eval "$(fnm env --shell bash)"
   fnm use lts-latest
-  corepack enable
+  corepack enable yarn
   corepack prepare yarn@stable --activate
 fi
 

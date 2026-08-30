@@ -32,6 +32,7 @@ packages:
     - nmap
     - pam-reattach
     - pinentry-mac
+    - pnpm
     - terraform  # hashicorp/tap
     - tmux
     - tokfresh   # stevejkang/tap
