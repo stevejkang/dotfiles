@@ -14,6 +14,35 @@ eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shell
 brew trust --tap {{ . | quote }} 2>/dev/null || true
 {{ end -}}
 
+# Resolve tap/core shadow conflicts before bundle install
+# When a formula is specified as tap/repo/name but the core version is
+# installed, brew bundle skips it (thinking it's already present) and
+# cleanup then removes it (since the core name doesn't match the tap name).
+{{ range .packages.brews -}}
+{{ if contains "/" . -}}
+{{ $bare := . | base -}}
+{{ $parts := splitList "/" . -}}
+{{ $tap := printf "%s/%s" (index $parts 0) (index $parts 1) -}}
+if brew list --formula {{ $bare | quote }} &>/dev/null && \
+   ! grep -q '"tap": *"{{ $tap }}"' "$(brew --cellar {{ $bare | quote }})"/*/INSTALL_RECEIPT.json 2>/dev/null; then
+  echo "Replacing {{ $bare }} with {{ . }}..."
+  brew uninstall --formula {{ $bare | quote }} 2>/dev/null || true
+fi
+{{ end -}}
+{{ end -}}
+{{ range .packages.casks -}}
+{{ if contains "/" . -}}
+{{ $bare := . | base -}}
+{{ $parts := splitList "/" . -}}
+{{ $tap := printf "%s/%s" (index $parts 0) (index $parts 1) -}}
+if brew list --cask {{ $bare | quote }} &>/dev/null && \
+   ! grep -q '"tap": *"{{ $tap }}"' "$(brew --caskroom)/{{ $bare }}/.metadata/INSTALL_RECEIPT.json" 2>/dev/null; then
+  echo "Replacing {{ $bare }} with {{ . }}..."
+  brew uninstall --cask {{ $bare | quote }} 2>/dev/null || true
+fi
+{{ end -}}
+{{ end -}}
+
 BREWFILE=$(cat <<EOF
 {{ range .packages.taps -}}
 tap {{ . | quote }}
@@ -43,7 +72,7 @@ brew cleanup 2>/dev/null || true
 if echo "$unlisted" | grep -q "^Would uninstall\|^Would untap"; then
   echo ""
   echo "The following packages are installed but not in packages.yaml:"
-  echo "$unlisted" | grep "^Would uninstall\|^Would untap"
+  echo "$unlisted"
   echo ""
   printf "Remove them? [y/N] "
   read -r answer </dev/tty
