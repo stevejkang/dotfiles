@@ -49,6 +49,7 @@ packages:
     - alt-tab
     - appcleaner
     - claude-code
+    - codex
     - cursor
     - figma
     - firefox@developer-edition
