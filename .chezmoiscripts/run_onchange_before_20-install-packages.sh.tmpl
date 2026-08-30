@@ -14,7 +14,7 @@ eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shell
 brew trust --tap {{ . | quote }} 2>/dev/null || true
 {{ end -}}
 
-if ! brew bundle --file=/dev/stdin <<EOF
+BREWFILE=$(cat <<EOF
 {{ range .packages.taps -}}
 tap {{ . | quote }}
 {{ end -}}
@@ -25,9 +25,33 @@ brew {{ . | quote }}
 cask {{ . | quote }}
 {{ end -}}
 EOF
-then
+)
+
+if ! echo "$BREWFILE" | brew bundle --file=/dev/stdin; then
   echo "Warning: brew bundle finished with errors (some packages may have failed to install)"
 fi
 
 echo "Homebrew packages installed"
+
+# Declarative cleanup: remove packages not in packages.yaml
+unlisted=$(echo "$BREWFILE" | brew bundle cleanup --file=/dev/stdin 2>/dev/null || true)
+
+# Always clean up stale cache/old versions
+brew cleanup 2>/dev/null || true
+
+# Prompt only for actual formula/cask/tap uninstalls
+if echo "$unlisted" | grep -q "^Would uninstall\|^Would untap"; then
+  echo ""
+  echo "The following packages are installed but not in packages.yaml:"
+  echo "$unlisted" | grep "^Would uninstall\|^Would untap"
+  echo ""
+  printf "Remove them? [y/N] "
+  read -r answer </dev/tty
+  if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+    echo "$BREWFILE" | brew bundle cleanup --force --file=/dev/stdin 2>/dev/null || true
+    echo "Cleanup done"
+  else
+    echo "Skipped cleanup"
+  fi
+fi
 {{ end -}}
