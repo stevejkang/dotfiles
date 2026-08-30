@@ -33,6 +33,7 @@ packages:
     - pam-reattach
     - pinentry-mac
     - pnpm
+    - tailscale
     - terraform  # hashicorp/tap
     - tmux
     - tokfresh   # stevejkang/tap
