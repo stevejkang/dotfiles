@@ -138,6 +138,7 @@ exit                                            # back to previous directory
 | `~/.wakatime.cfg` | WakaTime config | template | [WakaTime](https://wakatime.com/) plugin installed |
 | `~/.config/iterm2/com.googlecode.iterm2.plist` | iTerm2 preferences | — | [iTerm2](https://iterm2.com/) (cask) |
 | `~/src/.stignore` | Syncthing ignore patterns | — | `syncthing` (brew) |
+| `~/src/github.com/*` | Project directory structure (`.keep`) | — | — |
 
 ## Scripts
 
