@@ -23,7 +23,7 @@ packages:
     - git
     - gnupg
     - hey
-    - infisical   # infisical/get-cli
+    - infisical/get-cli/infisical
     - lsd
     - media-control
     - mole
@@ -66,7 +66,7 @@ packages:
     - obsidian
     - ollama-app
     - orbstack
-    - stablyai/orca/orca  # stablyai/orca
+    - stablyai/orca/orca
     - postman
     - proxyman
     - raindropio
