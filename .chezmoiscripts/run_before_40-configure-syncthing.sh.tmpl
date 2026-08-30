@@ -1,0 +1,82 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+set -euo pipefail
+
+eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
+
+if ! command -v syncthing &>/dev/null; then
+  echo "Syncthing not installed, skipping configuration"
+  exit 0
+fi
+
+if ! command -v xmlstarlet &>/dev/null; then
+  echo "xmlstarlet not installed, skipping configuration"
+  exit 0
+fi
+
+CONFIG_DIR="$HOME/Library/Application Support/Syncthing"
+CONFIG_FILE="$CONFIG_DIR/config.xml"
+
+if [[ ! -f "$CONFIG_FILE" ]]; then
+  echo "No Syncthing config found, skipping configuration"
+  exit 0
+fi
+
+# Desired config: xpath=value (add new entries here)
+DESIRED=(
+  "//options/globalAnnounceEnabled=false"
+  "//options/relaysEnabled=false"
+  "//options/natEnabled=false"
+  "//gui/address=0.0.0.0:8384"
+)
+
+# Check if any values need patching
+NEEDS_PATCH=false
+for ENTRY in "${DESIRED[@]}"; do
+  XPATH="${ENTRY%%=*}"
+  WANT="${ENTRY##*=}"
+  GOT=$(xmlstarlet sel -t -v "$XPATH" "$CONFIG_FILE" 2>/dev/null || echo "")
+  if [[ "$GOT" != "$WANT" ]]; then
+    NEEDS_PATCH=true
+    break
+  fi
+done
+
+if [[ "$NEEDS_PATCH" == "false" ]]; then
+  echo "Syncthing config already correct, no changes needed"
+  exit 0
+fi
+
+# Check current state before touching anything
+IS_RUNNING=false
+if brew services list | grep -q "^syncthing.*started"; then
+  IS_RUNNING=true
+fi
+
+# Changes needed — stop Syncthing if running
+if [[ "$IS_RUNNING" == "true" ]]; then
+  echo "Stopping Syncthing..."
+  brew services stop syncthing 2>/dev/null || true
+  sleep 2
+fi
+
+# Apply patches
+for ENTRY in "${DESIRED[@]}"; do
+  XPATH="${ENTRY%%=*}"
+  WANT="${ENTRY##*=}"
+  NAME="${XPATH##*/}"
+  GOT=$(xmlstarlet sel -t -v "$XPATH" "$CONFIG_FILE" 2>/dev/null || echo "")
+  if [[ "$GOT" != "$WANT" ]]; then
+    xmlstarlet ed -L -u "$XPATH" -v "$WANT" "$CONFIG_FILE"
+    echo "Set $NAME=$WANT"
+  fi
+done
+
+# Restart only if it was running before
+if [[ "$IS_RUNNING" == "true" ]]; then
+  echo "Restarting Syncthing..."
+  brew services start syncthing
+fi
+
+echo "Syncthing configured"
+{{ end -}}

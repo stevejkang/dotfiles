@@ -33,6 +33,7 @@ packages:
     - pam-reattach
     - pinentry-mac
     - pnpm
+    - syncthing
     - tailscale
     - terraform  # hashicorp/tap
     - tmux
@@ -41,6 +42,7 @@ packages:
     - wget
     - wireshark
     - witr
+    - xmlstarlet
     - zlib
     - zoxide
   casks:
