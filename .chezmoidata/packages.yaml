@@ -48,7 +48,7 @@ packages:
     - 1password-cli
     - alt-tab
     - appcleaner
-    - claude
+    - claude-code
     - cursor
     - figma
     - firefox@developer-edition
