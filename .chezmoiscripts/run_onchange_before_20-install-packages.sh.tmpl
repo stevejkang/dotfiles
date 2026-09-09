@@ -56,8 +56,25 @@ cask {{ . | quote }}
 EOF
 )
 
-if ! echo "$BREWFILE" | brew bundle --file=/dev/stdin; then
-  echo "Warning: brew bundle finished with errors (some packages may have failed to install)"
+bundle_output=$(echo "$BREWFILE" | brew bundle --file=/dev/stdin 2>&1) || true
+echo "$bundle_output"
+
+# Retry failed casks with --force (handles auto-update conflicts like stale
+# Caskroom artifacts or root-owned .app bundles in /Applications).
+# Only retry names declared in the casks section — a failed formula must not
+# be force-installed as a cask (some names exist as both, e.g. wireshark).
+MANAGED_CASKS=" {{ range .packages.casks }}{{ . }} {{ . | base }} {{ end }}"
+failed_casks=$(echo "$bundle_output" | sed -nE 's/.*(Installing|Upgrading) (.*) has failed.*/\2/p')
+if [ -n "$failed_casks" ]; then
+  echo ""
+  echo "Retrying failed casks with --force..."
+  echo "$failed_casks" | while read -r cask; do
+    if [[ "$MANAGED_CASKS" == *" $cask "* ]]; then
+      brew reinstall --cask --force "$cask" && \
+        echo "✓ $cask reinstalled" || \
+        echo "✗ $cask still failed"
+    fi
+  done
 fi
 
 echo "Homebrew packages installed"
