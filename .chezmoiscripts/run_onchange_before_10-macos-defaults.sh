@@ -37,6 +37,9 @@ sudo pmset -c displaysleep 0 || true
 
 # Globe/fn key: 0=DoNothing, 1=InputSource, 2=Emoji, 3=Dictation
 defaults write com.apple.HIToolbox AppleFnUsageType -int 0
+# Caps Lock to switch input source: 0=off, 1=on (default: on)
+defaults write NSGlobalDomain TISRomanSwitchState -int 0
+
 
 HOTKEYS="$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
 FINDER_PLIST="$HOME/Library/Preferences/com.apple.finder.plist"
