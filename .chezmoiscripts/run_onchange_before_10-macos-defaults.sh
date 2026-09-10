@@ -39,7 +39,13 @@ sudo pmset -c displaysleep 0 || true
 defaults write com.apple.HIToolbox AppleFnUsageType -int 0
 # Caps Lock to switch input source: 0=off, 1=on (default: on)
 defaults write NSGlobalDomain TISRomanSwitchState -int 0
-
+# Disable text input auto-corrections and predictions
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain WebAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticInlinePredictionEnabled -bool false
+defaults write NSGlobalDomain NSSmartReplyEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
 HOTKEYS="$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
 FINDER_PLIST="$HOME/Library/Preferences/com.apple.finder.plist"
