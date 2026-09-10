@@ -46,6 +46,12 @@ defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticInlinePredictionEnabled -bool false
 defaults write NSGlobalDomain NSSmartReplyEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+# Disable smart quotes/dashes, use straight quotes
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain KB_DoubleQuoteOption -string '"abc"'
+defaults write NSGlobalDomain KB_SingleQuoteOption -string "'abc'"
+defaults write NSGlobalDomain NSUserQuotesArray -array '<string>"</string>' '<string>"</string>' '<string>'"'"'</string>' '<string>'"'"'</string>'
 
 HOTKEYS="$HOME/Library/Preferences/com.apple.symbolichotkeys.plist"
 FINDER_PLIST="$HOME/Library/Preferences/com.apple.finder.plist"
