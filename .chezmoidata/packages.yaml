@@ -51,7 +51,7 @@ packages:
     - alt-tab
     - appcleaner
     - bruno
-    - claude-code
+    - claude-code@latest
     - codex
     - cursor
     - figma
