@@ -26,6 +26,7 @@ packages:
     - infisical/get-cli/infisical
     - lsd
     - media-control
+    - mkcert
     - mole
     - mysql-client@8.0
     - neovim
