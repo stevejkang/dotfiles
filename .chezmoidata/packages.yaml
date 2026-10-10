@@ -17,6 +17,7 @@ packages:
     - esphome
     - exiftool
     - fav        # johngrib/johngrib
+    - ffmpeg
     - fnm
     - fzf
     - gh
