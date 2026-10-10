@@ -15,6 +15,7 @@ packages:
     - binwalk
     - btop
     - chezmoi
+    - cloudflare-wrangler
     - esphome
     - exiftool
     - fav        # johngrib/johngrib
