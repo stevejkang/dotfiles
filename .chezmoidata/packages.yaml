@@ -43,6 +43,7 @@ packages:
     - terraform  # hashicorp/tap
     - tmux
     - tokfresh   # stevejkang/tap
+    - typst
     - uv
     - wget
     - wireshark
