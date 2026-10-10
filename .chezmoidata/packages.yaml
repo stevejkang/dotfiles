@@ -34,6 +34,7 @@ packages:
     - mysql-client@8.0
     - neovim
     - nmap
+    - oath-toolkit
     - pam-reattach
     - pinentry-mac
     - pnpm
