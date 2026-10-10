@@ -8,6 +8,7 @@ packages:
     - "terraform-linters/tap"
   brews:
     - act
+    - actionlint
     - age
     - awscli
     - bash
