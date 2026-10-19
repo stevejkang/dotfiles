@@ -28,8 +28,10 @@ packages:
     - gnupg
     - hey
     - infisical/get-cli/infisical
+    - libpq
     - lsd
     - media-control
+    - mise
     - mkcert
     - mole
     - mysql-client@8.0
@@ -51,6 +53,7 @@ packages:
     - wireshark
     - witr
     - xmlstarlet
+    - zbar
     - zlib
     - zoxide
   casks:
@@ -84,6 +87,7 @@ packages:
     - proxyman
     - raindropio
     - raycast
+    - session-manager-plugin
     - shortcat
     - signal
     - slack
