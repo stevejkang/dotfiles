@@ -3,6 +3,7 @@ packages:
     - "hashicorp/tap"
     - "infisical/get-cli"
     - "johngrib/johngrib"
+    - "openai/tools"
     - "stevejkang/tap"
     - "stablyai/orca"
     - "terraform-linters/tap"
@@ -40,6 +41,7 @@ packages:
     - pnpm
     - syncthing
     - tailscale
+    - openai/tools/tart
     - terraform  # hashicorp/tap
     - tmux
     - tokfresh   # stevejkang/tap
