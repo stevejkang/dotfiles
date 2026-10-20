@@ -98,3 +98,11 @@ packages:
     - telegram-desktop
     - tflint     # terraform-linters/tap
     - zoom
+  mas:
+    - { name: "1Password for Safari", id: 1569813296 }
+    - { name: "Amphetamine", id: 937984704 }
+    - { name: "Dato", id: 1470584107 }
+    - { name: "Fantastical", id: 975937182 }
+    - { name: "KakaoTalk", id: 869223134 }
+    - { name: "Magnet", id: 441258766 }
+    - { name: "Paste", id: 967805235 }

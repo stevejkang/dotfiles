@@ -79,6 +79,32 @@ fi
 
 echo "Homebrew packages installed"
 
+# App Store apps: mas requires a manual App Store sign-in, so confirm first.
+# Only prompt when some listed app is missing.
+if command -v mas &>/dev/null; then
+  installed_mas_ids=" $(mas list 2>/dev/null | awk '{print $1}' | tr '\n' ' ') "
+  missing_mas=""
+{{- range .packages.mas }}
+  [[ "$installed_mas_ids" == *" {{ .id }} "* ]] || missing_mas+="{{ .id }}:{{ .name }}"$'\n'
+{{- end }}
+  if [ -n "$missing_mas" ]; then
+    echo ""
+    echo "The following App Store apps are not installed:"
+    echo "$missing_mas" | sed -n 's/^[0-9]*:/  /p'
+    echo "Sign in to the App Store app before continuing."
+    printf "Install them with mas? [y/N] "
+    read -r answer </dev/tty
+    if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
+      echo "$missing_mas" | while IFS=: read -r id name; do
+        [ -n "$id" ] || continue
+        mas install "$id" && echo "✓ $name installed" || echo "✗ $name failed"
+      done
+    else
+      echo "Skipped App Store apps"
+    fi
+  fi
+fi
+
 # Declarative cleanup: remove packages not in packages.yaml
 unlisted=$(echo "$BREWFILE" | brew bundle cleanup --file=/dev/stdin 2>/dev/null || true)
 
