@@ -30,6 +30,7 @@ packages:
     - infisical/get-cli/infisical
     - libpq
     - lsd
+    - mas
     - media-control
     - mise
     - mkcert
