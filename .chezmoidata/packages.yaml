@@ -79,7 +79,6 @@ packages:
     - macs-fan-control
     - mitmproxy
     - ngrok
-    - notchnook
     - notion
     - obsidian
     - ollama-app
