@@ -34,6 +34,8 @@ defaults -currentHost write com.apple.screensaver idleTime -int 0
 # Display sleep: never (battery + AC)
 sudo pmset -b displaysleep 0 || true
 sudo pmset -c displaysleep 0 || true
+# Disable App Store app auto-updates
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool false
 
 # Globe/fn key: 0=DoNothing, 1=InputSource, 2=Emoji, 3=Dictation
 defaults write com.apple.HIToolbox AppleFnUsageType -int 0
