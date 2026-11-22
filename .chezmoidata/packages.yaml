@@ -95,6 +95,7 @@ packages:
     - tailscale-app
     - telegram-desktop
     - tflint     # terraform-linters/tap
+    - zed
     - zoom
   mas:
     - { name: "1Password for Safari", id: 1569813296 }
