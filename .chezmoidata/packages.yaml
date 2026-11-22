@@ -65,7 +65,6 @@ packages:
     - bruno
     - claude-code@latest
     - codex
-    - cursor
     - figma
     - firefox@developer-edition
     - font-jetbrains-mono-nerd-font
