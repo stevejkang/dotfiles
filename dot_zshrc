@@ -55,13 +55,6 @@ export EDITOR="nvim"
 # fav-dir
 [[ -f /opt/homebrew/bin/fav.sh ]] && source /opt/homebrew/bin/fav.sh
 
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 # opencode
 export PATH=$HOME/.opencode/bin:$PATH
 
@@ -85,4 +78,10 @@ eval "$(zoxide init zsh)"
 # IntelliJ IDEA
 export PATH="/Applications/IntelliJ IDEA.app/Contents/MacOS:$PATH"
 
-
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
